@@ -24,6 +24,8 @@
     "body-parser": "^1.18.3",
     "core-js": "^2.4.1",
     "express": "^4.16.4",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.2",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
