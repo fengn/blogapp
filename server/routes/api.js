@@ -14,6 +14,7 @@ const article = require('../models/article');
 var MongoClient = require('mongodb').MongoClient;
 
 var url = "mongodb://localhost:27017/learning_mongo";
+//var url = "mongodb+srv://fengnan:asd%2E1234@cluster0-pddmv.mongodb.net/test?retryWrites=true";
 
 // MongoClient.connect(url, function(err, db) {
 // 	console.log("Connected successfully to server");
@@ -39,6 +40,7 @@ client.connect(err => {
 		console.log(docs);
 		//callback;
 	})
+
   console.log("Connected successfully to server");
 
 	//db.close();
@@ -51,17 +53,38 @@ client.connect(err => {
 // 		console.log('Error connecting1');
 // 	}
 // });
-
-router.get('/all', function(req, res) {
-
-	article.find({}).exec(function(err, articles) {
-		if (err) {
-			console.log('Error getting the articles');
-		} else {
-			console.log(articles);
-			res.json(articles);
-		}
-	});
+router.post('/tours', function(req, res) {
+	console.log("Connected successfully to tours");
+	res.send('POST request sucessfull!');
 });
+router.put('/tours/:tourId', function(req, res) {
+	console.log("Connected successfully to tours");
+	res.send('PUT request sucessfull!');
+});
+
+router.delete('/tours', function(req, res) {
+	console.log("Connected successfully to tours");
+	res.send('DELETE request sucessfull!');
+});
+
+router.get('/tours', function(req, res, next) {
+	console.log("Connected successfully to tours");
+
+    //middleware
+    console.log(`Request form: ${req.originalUrl}`);
+    console.log(`Request type: ${req.method}`);
+    next();
+},(req,res, next) => {
+    res.send('GET request sucessfull!');
+	// article.find({}).exec(function(err, articles) {
+	// 	if (err) {
+	// 		console.log('Error getting the articles');
+	// 	} else {
+	// 		console.log(articles);
+	// 		res.json(articles);
+	// 	}
+	// });
+});
+
 
 module.exports = router;
